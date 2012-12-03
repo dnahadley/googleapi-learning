@@ -1,0 +1,26 @@
+''' do dooo....
+ok so to talk to google's apis we need authorization and keys
+'''
+import httplib2
+import oauth2client
+
+FLOW = OAuth2WebserverFlow(
+        client_id='948167656333.apps.googleusercontent.com',
+        client_secret='H6v1ZI5T1XZBBMHQHIe6EfqR',
+        redirect_uri='urn:ietf:wg:oauth:2.0:oob',
+        scope='https://.../tasks',
+        user_agent='google-project-dh/1.0')
+
+authorize_url=FLOW.step1_get_authorize_url()
+self.redirect(authorize_url)
+
+credentials = flow.step2_exchange(self.request.params)
+storage = StorageByKeyName(Credentials,user.user_id(),'credentials')
+storage.put(credentials)
+
+user = users.get_current_user()
+storage = StorageByKeyName(Credentials, user.user_id(), 'credentials')
+credentials = storage.get()
+
+http = httplib2.Http()
+http = credentials.authorize(http)
